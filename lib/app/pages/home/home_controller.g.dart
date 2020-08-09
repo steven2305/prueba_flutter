@@ -34,7 +34,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
-  user: ${user}
+user: ${user}
     ''';
   }
 }

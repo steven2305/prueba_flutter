@@ -11,7 +11,7 @@ class SplashModule extends ChildModule {
   
   @override
   List<Bind> get binds => [
-    Bind((i) => SplashController(i.get<SplashRepository>())),
+    Bind((i) => SplashController(i.get<SplashRepository>(), i.get<AppController>())),
     Bind((i) => SplashRepository(i.get<Dio>(), i.get<AppController>())),
     Bind((i) => Dio(baseOptions))
   ];

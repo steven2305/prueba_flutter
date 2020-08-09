@@ -1,5 +1,7 @@
 import 'package:desarrollo_app_prueba/app/utils/dialogs.dart';
+import 'package:desarrollo_app_prueba/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:mobx/mobx.dart';
 
 import 'splash_repository.dart';
@@ -11,7 +13,8 @@ class SplashController = _SplashControllerBase with _$SplashController;
 abstract class _SplashControllerBase with Store {
 
   final SplashRepository repository;
-  _SplashControllerBase(this.repository);
+  final AppController app;
+  _SplashControllerBase(this.repository,this.app);
 
   Future<void> fetchData() async {
 
@@ -28,4 +31,25 @@ abstract class _SplashControllerBase with Store {
 
     Modular.to.pushReplacementNamed("/");
   }
+
+  @action
+  Future<void> locations() async {
+
+    if (await Permission.contacts.request().isGranted) {
+        Modular.to.pushReplacementNamed("/login");
+    }
+
+    Map<Permission, PermissionStatus> statuses = await [
+    Permission.location, 
+    ].request();
+    print(statuses[Permission.location]);
+
+    if (await Permission.locationWhenInUse.serviceStatus.isEnabled) {
+      Modular.to.pushReplacementNamed("/login");   
+      }else{
+      Modular.to.pushReplacementNamed("/");   
+      }
+  }
+  @computed
+  Function get loginGo => locations;
 }

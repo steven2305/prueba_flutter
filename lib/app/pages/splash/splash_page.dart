@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../app_controller.dart';
 import 'splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,7 +11,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends ModularState<SplashPage, SplashController> {
 
-  final AppController appController = Modular.get<AppController>();
+  final SplashController appController = Modular.get<SplashController>();
   
   @override
   Widget build(BuildContext context) {
@@ -27,14 +26,14 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
 }
 
 class BodyWidget extends StatelessWidget {
-  final AppController appController;
+  final SplashController appController;
   const BodyWidget(this.appController);
   
   @override
   Stack build(BuildContext context) => Stack(
   children: <Widget>[
     Positioned(
-      bottom: MediaQuery.of(context).size.height * -0.60,
+      bottom: MediaQuery.of(context).size.height * -0.45,
       left: MediaQuery.of(context).size.width * -0.15,
       child: Align(
       alignment: FractionalOffset.bottomCenter,
@@ -44,14 +43,14 @@ class BodyWidget extends StatelessWidget {
       ),
     ),
     ListView(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.30),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.20),
         children: <Widget>[
-          Center(child: Text('USERAPP', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 28,fontFamily: 'Montserrat'))),
+          Center(child: Text('USERAPP', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 35,fontFamily: 'Montserrat'))),
           Center(
             child:Container(
-              padding: EdgeInsets.fromLTRB(40, 15, 40, 15),
-              child: Text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.', 
-              style: TextStyle(fontSize: 18, fontFamily: 'Montserrat'), textAlign: TextAlign.center, 
+              padding: EdgeInsets.fromLTRB(30, 25, 30, 25),
+              child: Text('Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', 
+              style: TextStyle(fontSize: 18, fontFamily: 'Montserrat',fontWeight: FontWeight.bold), textAlign: TextAlign.center, 
               )
             )
           ),
@@ -65,7 +64,7 @@ class BodyWidget extends StatelessWidget {
 
 class _LoginButton extends StatelessWidget {
 
-  final AppController appController;
+  final SplashController appController;
   const _LoginButton(this.appController);
 
   @override
@@ -73,12 +72,12 @@ class _LoginButton extends StatelessWidget {
     builder: (_) => Padding(
       padding: EdgeInsets.symmetric(horizontal: 50.0),
       child: RaisedButton(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Text('IR A LOGIN', style: TextStyle(color: Colors.white, fontFamily: 'Montserrat',fontSize: 18)),
-        color: appController.primaryColor,
+        padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
+        child: Text('IR A LOGIN', style: TextStyle(color: Colors.white, fontFamily: 'Montserrat',fontSize: 18,fontWeight: FontWeight.bold)),
+        color: appController.app.primaryColor,
         elevation: 0.0,
         shape: StadiumBorder(),
-        onPressed: () => Modular.to.pushNamed('/login')
+        onPressed: appController.loginGo,
       ),
     )
   );

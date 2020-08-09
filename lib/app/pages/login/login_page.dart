@@ -43,7 +43,7 @@ class AppImage extends StatelessWidget {
   @override
   Observer build(BuildContext context) => Observer(
     builder: (_) => Positioned(
-    top: MediaQuery.of(context).size.height * 0.10,
+    top: MediaQuery.of(context).size.height * 0.12,
       child: 
       (controller.inputE == true) ?
       Container(
@@ -111,7 +111,7 @@ class _EmailInput extends StatelessWidget {
         ),
         onChanged: controller.setEmail,
         onTap: controller.changeImage,
-        //onEditingComplete: controller.changeImage,
+        onEditingComplete: controller.changeImage,
       ),
     )
   );
@@ -140,15 +140,19 @@ class _PasswordInput extends StatelessWidget {
                       icon: Icon((controller.passwordVisible)
                           ? Icons.visibility_off
                           : Icons.visibility),
-                      onPressed: controller.changePasswordVisibility,)),
+                      onPressed: controller.changePasswordVisibility,
+                  )
+              ),
               onChanged: controller.setPassword,
               onTap: controller.changeImage,
-              //onEditingComplete: controller.changeImage,
+              onEditingComplete: controller.changeImage,
             ),
-          ));
+      )
+  );
 }
 
 class _SignUpButton extends StatelessWidget {
+  
   final LoginController controller;
   const _SignUpButton(this.controller);
 
