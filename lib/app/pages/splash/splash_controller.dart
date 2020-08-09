@@ -45,9 +45,9 @@ abstract class _SplashControllerBase with Store {
     print(statuses[Permission.location]);
 
     if (await Permission.locationWhenInUse.serviceStatus.isEnabled) {
-      Modular.to.pushReplacementNamed("/login");   
-      }else{
       Modular.to.pushReplacementNamed("/");   
+      }else{
+      Modular.to.pushReplacementNamed("/login");   
       }
   }
   @computed
