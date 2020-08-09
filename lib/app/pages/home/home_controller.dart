@@ -13,9 +13,15 @@ abstract class _HomeControllerBase with Store {
 
   final AppController app;
   final HomeRepository homeRepository;
+
   _HomeControllerBase(this.app, this.homeRepository) {
     getAlData();
   }
+  @observable
+  String titulo = 'HOME';
+
+  @action
+  String setTitulo(String value)  => titulo = value;
   
   @observable
   List<User> user;
@@ -34,9 +40,5 @@ abstract class _HomeControllerBase with Store {
     user = response['user'];
   
   }
-  @observable
-  String titulo = "HOME";
-
-  @action
-  void setTitulo(String value) => titulo = value;
+  
 }

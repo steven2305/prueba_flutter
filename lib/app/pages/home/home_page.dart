@@ -80,29 +80,55 @@ class _Botones extends StatelessWidget {
   Row build(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      _botonHome(Icons.home, 'HOME' ,controller),
-      _botonHome(Icons.chat, 'CHAT' ,controller),
-      _botonHome(Icons.favorite_border,'FAVORITOS' ,controller),
-      _botonHome(Icons.person, 'PERFIL' ,controller),
+      _BotonHome(controller,1,Icons.home,'HOME'),
+      _BotonHome(controller,2,Icons.chat,'CHAT'),
+      _BotonHome(controller,3,Icons.favorite_border,'FAVORITOS'),
+      _BotonHome(controller,4,Icons.person,'PERFIL'),
     ],
   );
 }
+class _BotonHome extends StatelessWidget {
 
-Widget _botonHome(IconData icon, String titulo,HomeController controller){
+  final HomeController controller;
+  final int index;
+  final IconData icon;
+  final String titulo;
+  const _BotonHome(this.controller,this.index,this.icon,this.titulo);
 
-  return Column(
-    children: <Widget>[
-      RaisedButton.icon(
-        onPressed: null, 
-        icon: Icon(icon, size: 30,color: controller.app.primaryColor), 
-        label: Text((titulo == controller.titulo) ? titulo : '',style: TextStyle(fontSize: 13,color:  controller.app.primaryColor),),
-        disabledColor: (titulo == controller.titulo) ? controller.app.backgroundColor : controller.app.secondaryColor,
-        shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-      ),
-    ]
+  @override
+  Observer build(BuildContext context) => Observer(
+    builder: (_) => Column(
+      children: <Widget>[
+        RaisedButton.icon(
+          onPressed: null, 
+          icon: Icon(icon, size: 30,color: controller.app.primaryColor), 
+          label: Text((titulo == controller.titulo) ? titulo : '',style: TextStyle(fontSize: 13,color:  controller.app.primaryColor),),
+          disabledColor: (titulo == controller.titulo) ? controller.app.backgroundColor : controller.app.secondaryColor,
+          shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+        ),
+      ]
+    ),
   );
 }
+// Widget _botonHome(IconData icon, String titulo, HomeController controller){
+
+//   return GestureDetector(
+//       onTap: controller.setTitulo(titulo),
+//       child: Column(
+//       children: <Widget>[
+//         RaisedButton.icon(
+//           onPressed: null, 
+//           icon: Icon(icon, size: 30,color: controller.app.primaryColor), 
+//           label: Text((titulo == controller.titulo) ? titulo : '',style: TextStyle(fontSize: 13,color:  controller.app.primaryColor),),
+//           disabledColor: (titulo == controller.titulo) ? controller.app.backgroundColor : controller.app.secondaryColor,
+//           shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(20)),
+//         ),
+//       ]
+//     ),
+//   );
+// }
 
 // Widget _botonDisable(IconData icon){
 //   return Column(
