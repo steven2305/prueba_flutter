@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+
 const String REPO_URL = "https://reqres.in/api";
 
 final BaseOptions baseOptions = BaseOptions(
@@ -17,3 +18,4 @@ final Map<String, dynamic> noInternetMessage = {
   "ok": false,
   "message": "no-wifi"
 };
+
