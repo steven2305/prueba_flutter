@@ -32,9 +32,9 @@ class LoginRepository {
       'message': response.data['message']
     };
 
-    // final User user = User.fromJson(response.data['token']);
+  //  final User user = User.fromJson(response.data['token']);
 
-    // app.user = user;
+  //  app.user = user;
 
     prefs.token = response.data['token'];
     prefs.isLogged = true;

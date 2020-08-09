@@ -50,10 +50,10 @@ abstract class _LoginControllerBase with Store {
     final Map<String, dynamic> response = await loginRepository.login(email, password);
 
     loading = false;
-
+    
     if(!response["ok"]) {
       if(response["message"] == "no-wifi") return noInternetDialog(login);
-      return messageDialog("No autorizado", "${response["message"]}"); 
+      return messageDialog("No autorizado", "Ingresa nuevamente los datos correspondientes"); 
     }
 
     Modular.to.pushReplacementNamed("/home");
