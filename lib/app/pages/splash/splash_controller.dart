@@ -44,11 +44,12 @@ abstract class _SplashControllerBase with Store {
     ].request();
     print(statuses[Permission.location]);
 
-    if (await Permission.locationWhenInUse.serviceStatus.isEnabled) {
-      Modular.to.pushReplacementNamed("/");   
+    if (statuses[Permission.location].toString() == 'PermissionStatus.granted') {
+        Modular.to.pushReplacementNamed("/login");   
       }else{
-      Modular.to.pushReplacementNamed("/login");   
+        Modular.to.pushReplacementNamed("/");   
       }
+    
   }
   @computed
   Function get loginGo => locations;

@@ -110,8 +110,8 @@ class _EmailInput extends StatelessWidget {
           errorText: (!controller.isEmailValid && controller.email.length > 0) ? "Correo incorrecto" : null
         ),
         onChanged: controller.setEmail,
-        onTap: controller.changeImage,
-        onEditingComplete: controller.changeImage,
+        onTap: (controller.inputE == true) ? controller.changeImage : (){},
+        onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
       ),
     )
   );
@@ -144,8 +144,8 @@ class _PasswordInput extends StatelessWidget {
                   )
               ),
               onChanged: controller.setPassword,
-              onTap: controller.changeImage,
-              onEditingComplete: controller.changeImage,
+              onTap: (controller.inputE == true) ? controller.changeImage : (){},
+              onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
             ),
       )
   );
