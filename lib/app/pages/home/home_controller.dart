@@ -34,5 +34,9 @@ abstract class _HomeControllerBase with Store {
     user = response['user'];
   
   }
+  @observable
+  String titulo = "HOME";
 
+  @action
+  void setTitulo(String value) => titulo = value;
 }

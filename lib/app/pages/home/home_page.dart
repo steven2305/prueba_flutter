@@ -58,7 +58,7 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   right: 0.0,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 15.0),
-                    child: _botones(),            
+                    child: _Botones(controller),            
                   ),
                 )
               ],
@@ -71,51 +71,54 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
  @override
   Size get preferredSize => Size.fromHeight(height);
 }
+class _Botones extends StatelessWidget {
+  
+  final HomeController controller;
+  const _Botones(this.controller);
 
-Widget _botones(){
-
-  return Row(
+  @override
+  Row build(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      _botonHome(Icons.home, 'HOME'),
-      _botonDisable(Icons.chat),
-      _botonDisable(Icons.favorite_border),
-      _botonDisable(Icons.person),
+      _botonHome(Icons.home, 'HOME' ,controller),
+      _botonHome(Icons.chat, 'CHAT' ,controller),
+      _botonHome(Icons.favorite_border,'FAVORITOS' ,controller),
+      _botonHome(Icons.person, 'PERFIL' ,controller),
     ],
   );
 }
 
-Widget _botonHome(IconData icon, String titulo){
+Widget _botonHome(IconData icon, String titulo,HomeController controller){
 
   return Column(
     children: <Widget>[
       RaisedButton.icon(
         onPressed: null, 
-        icon: Icon(icon, size: 30,color: Color(0xff1A1A1A),), 
-        label: Text(titulo,style: TextStyle(fontSize: 13,color: Color(0xff1A1A1A)),),
-        disabledColor: Color(0xffFEDD7C),
+        icon: Icon(icon, size: 30,color: controller.app.primaryColor), 
+        label: Text((titulo == controller.titulo) ? titulo : '',style: TextStyle(fontSize: 13,color:  controller.app.primaryColor),),
+        disabledColor: (titulo == controller.titulo) ? controller.app.backgroundColor : controller.app.secondaryColor,
         shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
-      )
+      ),
     ]
   );
 }
 
-Widget _botonDisable(IconData icon){
-  return Column(
-    children: <Widget>[
-      RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              color: Colors.white,
-              disabledColor: Colors.white,
-              colorBrightness: Brightness.light,
-              child:Icon(icon, size: 30),
-              onPressed: (){},
-            ),
-    ],
-  );
-}
+// Widget _botonDisable(IconData icon){
+//   return Column(
+//     children: <Widget>[
+//       RaisedButton(
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(20)),
+//               color: Colors.white,
+//               disabledColor: Colors.white,
+//               colorBrightness: Brightness.light,
+//               child:Icon(icon, size: 30),
+//               onPressed: (){},
+//             ),
+//     ],
+//   );
+// }
 
 class _UsersWidget extends StatelessWidget {
   
@@ -210,12 +213,12 @@ class _UserItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('${user.firstName}',style: TextStyle(color: controller.app.primaryColor)),
-                  SizedBox(height: 5.0),
+                  Text('${user.firstName} '+'${user.lastName}',style: TextStyle(color: controller.app.primaryColor)),
+                  SizedBox(height: 2.0,),
                   RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(text: '${user.lastName} ', style: TextStyle(color: controller.app.primaryColor,fontSize: 13)),
+                        TextSpan(text: 'Gatitotraviso04', style: TextStyle(color: Colors.black38,fontSize: 12)),
                       ]
                     )
                   ),

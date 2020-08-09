@@ -49,7 +49,7 @@ abstract class _SplashControllerBase with Store {
       }else{
         Modular.to.pushReplacementNamed("/");   
       }
-    
+
   }
   @computed
   Function get loginGo => locations;

@@ -16,6 +16,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Scaffold build(BuildContext context) => Scaffold(
     backgroundColor: controller.app.backgroundColor,
+    resizeToAvoidBottomInset: false,
     body: Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
@@ -110,8 +111,8 @@ class _EmailInput extends StatelessWidget {
           errorText: (!controller.isEmailValid && controller.email.length > 0) ? "Correo incorrecto" : null
         ),
         onChanged: controller.setEmail,
-        onTap: (controller.inputE == true) ? controller.changeImage : (){},
-        onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
+        // onTap: (controller.inputE == true) ? controller.changeImage : (){},
+        // onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
       ),
     )
   );
@@ -144,8 +145,8 @@ class _PasswordInput extends StatelessWidget {
                   )
               ),
               onChanged: controller.setPassword,
-              onTap: (controller.inputE == true) ? controller.changeImage : (){},
-              onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
+              // onTap: (controller.inputE == true) ? controller.changeImage : (){},
+              // onEditingComplete: (controller.inputE == false) ? controller.changeImage : (){},
             ),
       )
   );
